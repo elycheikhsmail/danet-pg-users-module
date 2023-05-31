@@ -5,6 +5,6 @@ import { ArticleModule } from './articles/module.ts';
 
 @Module({
   controllers: [AppController],
-  imports: [TodoModule,ArticleModule],
+  imports: [TodoModule, ArticleModule],
 })
 export class AppModule {}

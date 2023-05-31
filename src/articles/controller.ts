@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from 'danet/mod.ts';
-import { Article} from './class.ts';
+import { Article } from './class.ts';
 import { ArticleService } from './service.ts';
 import { ReturnedType } from 'danet_swagger/decorators.ts';
 
@@ -16,8 +16,8 @@ export class ArticleController {
 
   @ReturnedType(Article)
   @Get(':id')
-  async getArticleById(@Param('id') ArticleId: string) {
-    return this.ArticleService.getById(ArticleId);
+  async getArticleById(@Param('id') articleId: string) {
+    return this.ArticleService.getById(articleId);
   }
 
   @Post()
@@ -26,12 +26,15 @@ export class ArticleController {
   }
 
   @Put(':id')
-  async updateArticle(@Param('id') ArticleId: string, @Body() Article: Article) {
-    return this.ArticleService.update(ArticleId, Article);
+  async updateArticle(
+    @Param('id') articleId: string,
+    @Body() Article: Article,
+  ) {
+    return this.ArticleService.update(articleId, Article);
   }
 
   @Delete(':id')
-  async deleteOne(@Param('id') ArticleId: string) {
-    return this.ArticleService.deleteOneById(ArticleId);
+  async deleteOne(@Param('id') articleId: string) {
+    return this.ArticleService.deleteOneById(articleId);
   }
 }

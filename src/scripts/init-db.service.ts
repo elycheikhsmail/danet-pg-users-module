@@ -1,5 +1,4 @@
-import { DbConfig } from "./db-config.ts";
- 
+import { DbConfig } from './db-config.ts';
 
 export class InitDbService extends DbConfig {
   constructor() {
@@ -16,7 +15,7 @@ export class InitDbService extends DbConfig {
         content TEXT
       );`,
     );
-    
+
     await this.client.queryObject(
       `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
       CREATE TABLE IF NOT EXISTS articles (
@@ -34,5 +33,3 @@ export class InitDbService extends DbConfig {
     console.log('task done');
   }
 }
-
-

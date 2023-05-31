@@ -1,5 +1,5 @@
 import { Module, TokenInjector } from 'danet/mod.ts';
-import { PostgresService } from "./postgres.service.ts";
+import { PostgresService } from './postgres.service.ts';
 
 export const DATABASE = 'DATABASE';
 

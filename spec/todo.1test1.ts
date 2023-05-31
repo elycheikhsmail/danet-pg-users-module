@@ -49,7 +49,7 @@ describe('Todo', () => {
       body: JSON.stringify(payload),
     });
     const returnedData: Todo = await res.json();
-    console.log("id: ",returnedData._id)
+    console.log('id: ', returnedData._id);
     assertExists(returnedData._id);
     assertEquals(returnedData.title, payload.title);
     assertEquals(returnedData.content, payload.content);
@@ -88,7 +88,7 @@ describe('Todo', () => {
     });
 
     const returnedData: Todo[] = await res.json();
-    console.log({returnedData})
+    console.log({ returnedData });
     assertEquals(returnedData.length, 2);
     const plainArray = JSON.parse(JSON.stringify([firstAdded, secondAdded]));
     assertArrayIncludes(returnedData, plainArray);

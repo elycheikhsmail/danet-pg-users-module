@@ -24,7 +24,7 @@ let port: number;
 const payload: Omit<Article, '_id'> = {
   title: 'my Article',
   content: 'long enough content for passing validation',
-  price:4500
+  price: 4500,
 };
 describe('Article', () => {
   beforeAll(async () => {
@@ -52,7 +52,7 @@ describe('Article', () => {
       body: JSON.stringify(payload),
     });
     const returnedData: Article = await res.json();
-    console.log("id: ",returnedData._id)
+    console.log('id: ', returnedData._id);
     assertExists(returnedData._id);
     assertEquals(returnedData.title, payload.title);
     assertEquals(returnedData.content, payload.content);
@@ -80,12 +80,12 @@ describe('Article', () => {
     const firstAdded = await articleService.create({
       title: 'first Article',
       content: 'first content',
-      price:3500
+      price: 3500,
     });
     const secondAdded = await articleService.create({
       title: 'second Article',
       content: 'second content',
-      price:5600
+      price: 5600,
     });
 
     const res = await fetch(`http://localhost:${port}/Article`, {
@@ -93,7 +93,7 @@ describe('Article', () => {
     });
 
     const returnedData: Article[] = await res.json();
-    console.log({returnedData})
+    console.log({ returnedData });
     assertEquals(returnedData.length, 2);
     const plainArray = JSON.parse(JSON.stringify([firstAdded, secondAdded]));
     assertArrayIncludes(returnedData, plainArray);
@@ -103,12 +103,15 @@ describe('Article', () => {
     const firstAdded = await articleService.create({
       title: 'first Article',
       content: 'first content',
-      price:4590
+      price: 4590,
     });
 
-    const res = await fetch(`http://localhost:${port}/Article/${firstAdded._id}`, {
-      method: 'GET',
-    });
+    const res = await fetch(
+      `http://localhost:${port}/Article/${firstAdded._id}`,
+      {
+        method: 'GET',
+      },
+    );
     const returnedArticle: Article = await res.json();
     const plainObject = JSON.parse(JSON.stringify(firstAdded));
 
@@ -119,13 +122,14 @@ describe('Article', () => {
     const firstAdded = await articleService.create({
       title: 'first Article',
       content: 'content is long enough for validation again',
-      price:4600
+      price: 4600,
     });
     await (await fetch(`http://localhost:${port}/Article/${firstAdded._id}`, {
       method: 'PUT',
       body: JSON.stringify({
         title: 'newtitle',
         content: 'content is long enough for validation again',
+        price: 3400,
       }),
     })).text();
     const returnedArticle =
@@ -140,12 +144,15 @@ describe('Article', () => {
     const firstAdded = await articleService.create({
       title: 'first Article',
       content: 'first content',
-      price:5690
+      price: 5690,
     });
 
-    const res = await fetch(`http://localhost:${port}/Article/${firstAdded._id}`, {
-      method: 'DELETE',
-    });
+    const res = await fetch(
+      `http://localhost:${port}/Article/${firstAdded._id}`,
+      {
+        method: 'DELETE',
+      },
+    );
     await res.text();
 
     assertEquals(await articleService.getById(firstAdded._id), undefined);

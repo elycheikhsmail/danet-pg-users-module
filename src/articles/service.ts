@@ -5,7 +5,9 @@ import { USER_REPOSITORY } from './constant.ts';
 
 @Injectable()
 export class ArticleService {
-  constructor(@Inject(USER_REPOSITORY) private repository: Repository<Article>) {
+  constructor(
+    @Inject(USER_REPOSITORY) private repository: Repository<Article>,
+  ) {
   }
 
   getAll() {
