@@ -1,0 +1,17 @@
+import { Repository, RepositoryTemporary } from '../database/repository.ts';
+import { User } from './users.class.ts';
+import { Inject } from 'danet/mod.ts';
+import { DATABASE } from '../database/module.ts';
+import { PostgresService } from '../database/postgres.service.ts';
+
+export class UserRepository implements RepositoryTemporary<User> {
+  constructor(@Inject(DATABASE) private dbService: PostgresService) {
+  }
+
+  async create(user: Omit<User, '_id'>) {
+    const { rows } = await this.dbService.client.queryObject<User>(
+      `INSERT INTO users (email, password) VALUES ('${user.email}', '${user.password}') RETURNING _id, email, password;`,
+    );
+    return rows[0];
+  }
+}
