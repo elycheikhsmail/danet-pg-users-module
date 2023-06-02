@@ -14,7 +14,8 @@
   },
   "importMap": "./import_map.json",
   "tasks": {
-    "launch-server": "deno run --allow-net --allow-read --unstable --allow-env run.ts",
+    "serve": "deno run --allow-net --allow-read --unstable --allow-env run.ts",
+    "dev": "deno run --allow-net --allow-read --unstable --watch --allow-env run.ts",
     "create-tables": "deno run --allow-net --allow-read --unstable --allow-env ./src/scripts/create-tables.ts",
     "test": "deno test --allow-env --allow-net --allow-read -A --unstable spec"
   }

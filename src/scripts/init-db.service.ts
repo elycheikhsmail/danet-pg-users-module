@@ -29,6 +29,16 @@ export class InitDbService extends DbConfig {
       // subcategorie Integer
       // image_link TEXT
     );
+
+    await this.client.queryObject(
+      `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+      CREATE TABLE IF NOT EXISTS users (
+        _id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        email TEXT,
+        password TEXT
+      );`,
+    );
+
     await this.onAppClose();
     console.log('task done');
   }
