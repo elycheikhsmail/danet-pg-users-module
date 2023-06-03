@@ -1,13 +1,4 @@
 import jwt from 'npm:jsonwebtoken';
-const payload = {
-  utilisateurId: 123456,
-  nomUtilisateur: 'JohnDoe',
-  role: 'admin',
-};
-
-const cleSecrete = 'votreCleSecrete'; // Remplacez par votre propre clé secrète
-
-const token = jwt.sign(payload, cleSecrete);
 
 //
 import { Inject, Injectable } from 'danet/mod.ts';
@@ -30,6 +21,16 @@ export class UserService {
     const userOutput = await this.repository.checkUser(user);
     if (userOutput) {
       //
+
+      const payload = {
+        userId: userOutput._id,
+        userEmail: user.email,
+        role: 'admin',
+      };
+
+      const SECKRET_KEY = Deno.env.get('SECKRET_KEY');
+
+      const token = jwt.sign(payload, SECKRET_KEY);
       return { token };
     } else {
       return null;

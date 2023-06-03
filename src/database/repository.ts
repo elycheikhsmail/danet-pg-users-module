@@ -13,7 +13,7 @@ export interface RepositoryTemporary<T extends unknown> {
   // getById(id: string): Promise<T | undefined>;
   // deno-lint-ignore no-explicit-any
   create(dto: unknown): Promise<any>;
-  checkUser(dto: unknown): Promise<any>;
+  checkUser(dto: unknown): Promise<T | undefined>;
   // updateOne(id: string, dto: T): Promise<unknown>;
   // deleteOne(id: string): Promise<unknown>;
   // deleteAll(): Promise<unknown>;
