@@ -4,10 +4,10 @@ import {
   Injectable,
 } from 'https://deno.land/x/danet@1.7.1/mod.ts';
 import { Request } from 'https://deno.land/x/oak@v11.1.0/request.ts';
-import jwt from 'npm:jsonwebtoken';
+import { get_token_from_request, verify_token } from './utiles.ts';
 
 @Injectable()
-export class SimpleAuthGuard implements AuthGuard {
+export class ReadAuthGuard implements AuthGuard {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> {
@@ -17,19 +17,10 @@ export class SimpleAuthGuard implements AuthGuard {
 }
 
 function validateRequest(request: Request): boolean {
-  // extract headers
-  const tokenWithBareer = request.headers.get('Authorization');
-  const arrayFromToken = tokenWithBareer?.split(' ');
-  let token = '';
-  if (arrayFromToken && arrayFromToken.length > 0) {
-    token = arrayFromToken[1];
-  } else {
-    return false;
-  }
+  const token = get_token_from_request(request);
   if (token) {
     try {
-      const SECKRET_KEY = Deno.env.get('SECKRET_KEY');
-      const _decoded = jwt.verify(token, SECKRET_KEY);
+      verify_token(token);
       return true;
     } catch (_error) {
       return false;
