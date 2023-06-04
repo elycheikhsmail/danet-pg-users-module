@@ -3,24 +3,27 @@
 </p>
 
 ## Description
-module for manage users in project built usining Danet and postgresql. Danet is web framework inspire from Nestjs but use Deno js as runtime instad of Node js. 
+
+module for manage users in project built usining Danet and postgresql. Danet is
+web framework inspire from Nestjs but use Deno js as runtime instad of Node js.
 
 ## prequist:
+
 - deno installed in your machine
-- postgres server installed, this project use this DB. 
+- postgres server installed, this project use this DB.
 
 ## Basic workflow
 
-clone this reposetory.
-be inside the root of this project:
-create .env file
-copy .env.example content into .env then fill the value for each env variable. in this step you configure the parametres needed for connect to postgresql db.
-then following commands:
+clone this reposetory. be inside the root of this project: create .env file copy
+.env.example content into .env then fill the value for each env variable. in
+this step you configure the parametres needed for connect to postgresql db. then
+following commands:
 
 ```bash
 $ deno task create-tables
-$ deno task serve 
+$ deno task serve
 ```
+
 by default the project will run on localhost port 3000.
 
 ## endpoints

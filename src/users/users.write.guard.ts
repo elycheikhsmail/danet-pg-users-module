@@ -1,9 +1,4 @@
-import {
-  AuthGuard,
-  ExecutionContext,
-  Injectable,
-} from 'https://deno.land/x/danet@1.7.1/mod.ts';
-import { Request } from 'https://deno.land/x/oak@v11.1.0/request.ts';
+import { AuthGuard, ExecutionContext, Injectable } from 'danet/mod.ts';
 import jwt from 'npm:jsonwebtoken';
 
 @Injectable()

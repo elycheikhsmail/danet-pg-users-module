@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post, UseGuard } from 'danet/mod.ts';
+import { Body, Controller, Get, Post, Req, UseGuard } from 'danet/mod.ts';
 import { User } from './users.class.ts';
 import { UserService } from './users.service.ts';
 import { ReadAuthGuard } from './users.read.guard.ts';
+import { Request } from 'oak/mod.ts';
 
 @Controller('users')
 export class UserController {
@@ -14,9 +15,8 @@ export class UserController {
   }
 
   @Post('logout')
-  async logoutUser() {
-    // read headers
-    return [];
+  async logoutUser(@Req() req: Request) {
+    return await this.userService.logoutUser(req);
   }
 
   @Post('login')

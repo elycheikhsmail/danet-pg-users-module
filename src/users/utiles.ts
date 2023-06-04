@@ -1,5 +1,5 @@
-import { Request } from 'https://deno.land/x/oak@v11.1.0/request.ts';
 import jwt from 'npm:jsonwebtoken';
+import { Request } from 'oak/mod.ts';
 
 export function get_token_from_request(request: Request): string {
   // extract headers

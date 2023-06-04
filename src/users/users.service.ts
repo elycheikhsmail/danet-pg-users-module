@@ -1,9 +1,8 @@
 import jwt from 'npm:jsonwebtoken';
-import { Request } from 'https://deno.land/x/oak@v11.1.0/request.ts';
-
+import { Request } from 'oak/mod.ts';
 //
 import { Inject, Injectable } from 'danet/mod.ts';
-import type { RepositoryTemporary } from '../database/repository.ts';
+import type { RepositoryUserModel } from '../database/repository.ts';
 import { USER_REPOSITORY } from './constant.ts';
 import { User } from './users.class.ts';
 import { get_token_from_request, verify_token } from './utiles.ts';
@@ -11,7 +10,7 @@ import { get_token_from_request, verify_token } from './utiles.ts';
 @Injectable()
 export class UserService {
   constructor(
-    @Inject(USER_REPOSITORY) private repository: RepositoryTemporary<User>,
+    @Inject(USER_REPOSITORY) private repository: RepositoryUserModel<User>,
   ) {
   }
 
@@ -39,12 +38,13 @@ export class UserService {
     }
   }
 
-  logoutUser(request: Request) {
+  async logoutUser(request: Request) {
     const token = get_token_from_request(request);
     if (token) {
       try {
         verify_token(token);
         // save this token in db
+        await this.repository.logout(token);
         return true;
       } catch (_error) {
         return false;

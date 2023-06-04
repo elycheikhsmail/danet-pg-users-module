@@ -15,6 +15,7 @@ export class InitDbService extends DbConfig {
         password TEXT
       );`,
     );
+    // token_string  should be unique
     await this.client.queryObject(
       `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
       CREATE TABLE IF NOT EXISTS tokens (

@@ -1,13 +1,12 @@
-import { RepositoryTemporary } from '../database/repository.ts';
+import { RepositoryUserModel } from '../database/repository.ts';
 import { User } from './users.class.ts';
 import { Inject } from 'danet/mod.ts';
 import { DATABASE } from '../database/module.ts';
 import { PostgresService } from '../database/postgres.service.ts';
 
-export class UserRepository implements RepositoryTemporary<User> {
+export class UserRepository implements RepositoryUserModel<User> {
   constructor(@Inject(DATABASE) private dbService: PostgresService) {
   }
-
   async create(user: Omit<User, '_id'>) {
     const { rows } = await this.dbService.client.queryObject<User>(
       `INSERT INTO users (email, password) VALUES ('${user.email}', '${user.password}') RETURNING _id, email, password;`,
@@ -20,5 +19,11 @@ export class UserRepository implements RepositoryTemporary<User> {
       `SELECT  email, password FROM users  WHERE email='${user.email}' AND password='${user.password}';`,
     );
     return rows[0];
+  }
+
+  async logout(token: string): Promise<void> {
+    await this.dbService.client.queryObject(
+      `INSERT INTO tokens (token_string) VALUES ('${token}')`,
+    );
   }
 }
