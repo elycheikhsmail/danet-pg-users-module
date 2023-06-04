@@ -15,7 +15,7 @@ export class UserController {
   }
 
   @Get('logout')
-  async logoutUser(@Req() req: Request) { 
+  async logoutUser(@Req() req: Request) {
     return this.userService.logoutUser(req);
   }
 
