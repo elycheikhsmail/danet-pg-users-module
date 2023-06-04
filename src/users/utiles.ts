@@ -14,5 +14,6 @@ export function get_token_from_request(request: Request): string {
 
 export function verify_token(token: string) {
   const SECKRET_KEY = Deno.env.get('SECKRET_KEY');
-  const _decoded = jwt.verify(token, SECKRET_KEY);
+  const jwtPayload = jwt.verify(token, SECKRET_KEY);
+  return jwtPayload;
 }

@@ -23,7 +23,15 @@ export class UserRepository implements RepositoryUserModel<User> {
 
   async logout(token: string): Promise<void> {
     await this.dbService.client.queryObject(
-      `INSERT INTO tokens (token_string) VALUES ('${token}')`,
+      `INSERT INTO tokens (token_string) VALUES ('${token}');`,
     );
+  }
+
+  async check_if_logout(token: string): Promise<boolean> {
+    const results = await this.dbService.client.queryObject(
+      `SELECT (token_string) from tokens WHERE token_string='${token}' LIMIT 1;`,
+    );
+    const isLogout = results.rowCount ? results.rowCount : 0;
+    return isLogout == 1;
   }
 }

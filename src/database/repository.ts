@@ -13,4 +13,5 @@ export interface RepositoryUserModel<T extends unknown> {
   create(dto: unknown): Promise<any>;
   checkUser(dto: unknown): Promise<T | undefined>;
   logout(token: string): Promise<void>;
+  check_if_logout(token: string): Promise<boolean>;
 }

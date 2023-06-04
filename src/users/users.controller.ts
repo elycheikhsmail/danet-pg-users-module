@@ -14,9 +14,10 @@ export class UserController {
     return this.userService.create(user);
   }
 
-  @Post('logout')
+  @Get('logout')
   async logoutUser(@Req() req: Request) {
-    return await this.userService.logoutUser(req);
+    console.log(req);
+    return this.userService.logoutUser(req);
   }
 
   @Post('login')
@@ -30,10 +31,15 @@ export class UserController {
     return { msg: 'ok' };
   }
 
-  @Get('read')
-  @UseGuard(ReadAuthGuard)
-  async protected_for_write() {
+  @Get('write')
+  async protected_for_write(@Req() req: Request) {
     // assuming write data in  db
-    return { msg: 'ok' };
+    const can_I_write_in_db = await this.userService.dontAllowAnonymusWriteInDb(
+      req,
+    );
+    const resp = can_I_write_in_db
+      ? { msg: 'ok, you can write in db' }
+      : { msg: 'no, you can\'t write in db' };
+    return resp;
   }
 }
