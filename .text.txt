@@ -1,3 +1,2 @@
-implement login
-protected point
-reoraniser le code avant de continuer
+implement logout
+openapi doc, swagger ui
