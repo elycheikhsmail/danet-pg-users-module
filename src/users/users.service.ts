@@ -62,7 +62,7 @@ export class UserService {
     if (token) {
       try {
         verify_token(token);
-        return await this.repository.check_if_logout(token);
+        return !await this.repository.check_if_logout(token);
       } catch (_error) {
         return false;
       }
