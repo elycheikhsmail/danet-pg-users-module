@@ -27,3 +27,10 @@ $ deno task serve
 by default the project will run on localhost port 3000.
 
 ## endpoints
+
+swagger doc
+http://localhost:3000/docs
+
+## still in progress
+
+not yet complete
