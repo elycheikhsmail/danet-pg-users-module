@@ -5,7 +5,7 @@ import { Client } from 'postgres/mod.ts';
 @Injectable()
 export class PostgresService implements OnAppBootstrap, OnAppClose {
   constructor() {
-    console.log("new PostgresService was created")
+    console.log('new PostgresService was created');
   }
 
   public client!: Client;

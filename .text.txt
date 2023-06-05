@@ -1,4 +1,5 @@
 refactor the code: separate endpoint to be protected from users module
+clean up the code, unused import, remove console.log(), remove some comment...
 document
 openapi doc, swagger ui
 hash password

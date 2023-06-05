@@ -2,10 +2,9 @@ import { Body, Controller, Get, Post, Req } from 'danet/mod.ts';
 import { User } from './users.class.ts';
 import { UserService } from './users.service.ts';
 import { Request } from 'oak/mod.ts';
+import { Tag } from 'danet_swagger/decorators.ts';
 
-//import { Tag } from "danet_swagger/decorators.ts";
-
-//@Tag('users')
+@Tag('users')
 @Controller('users')
 export class UserController {
   constructor(public userService: UserService) {

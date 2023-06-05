@@ -2,10 +2,9 @@ import { Controller, Get, Req, UseGuard } from 'danet/mod.ts';
 import { MyService } from './my.service.ts';
 import { ReadAuthGuard } from './my.read.guard.ts';
 import { Request } from 'oak/mod.ts';
+import { Tag } from 'danet_swagger/decorators.ts';
 
-//import { Tag } from "danet_swagger/decorators.ts";
-
-//@Tag('my')
+@Tag('my')
 @Controller('my')
 export class MyController {
   constructor(public myService: MyService) {

@@ -10,10 +10,10 @@ import { DatabaseModule } from '../database/module.ts';
   injectables: [
     new TokenInjector(UserRepository, USER_REPOSITORY),
     UserService,
-  ], 
-  // injectables: [new TokenInjector(PostgresRepository, USER_REPOSITORY), TodoService], 
-  
+  ],
+  // injectables: [new TokenInjector(PostgresRepository, USER_REPOSITORY), TodoService],
+
   // change InMemoryTodoRepository by any custom repository using other database engine if needed
-  imports: [DatabaseModule],
+  //imports: [DatabaseModule],
 })
 export class UserModule {}

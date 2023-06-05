@@ -19,9 +19,9 @@ export class UserService {
   }
 
   async checkUser(user: Omit<User, '_id'>) {
-    console.log("start checkUser")
+    console.log('start checkUser');
     const userOutput = await this.repository.checkUser(user);
-    console.log(userOutput?.email)
+    console.log(userOutput?.email);
     if (userOutput) {
       //
 
@@ -34,8 +34,8 @@ export class UserService {
       const SECKRET_KEY = Deno.env.get('SECKRET_KEY');
 
       const token = jwt.sign(payload, SECKRET_KEY);
-      console.log("token : ");
-      console.log(token)
+      console.log('token : ');
+      console.log(token);
       return { token };
     } else {
       return null;

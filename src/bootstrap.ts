@@ -15,6 +15,6 @@ export const bootstrap = async () => {
   const document = await SwaggerModule.createDocument(application, spec);
   await SwaggerModule.setup('docs', application, document);
   application.addGlobalMiddlewares(loggerMiddleware);
-  
+
   return application;
 };
