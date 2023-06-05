@@ -7,10 +7,12 @@ export const bootstrap = async () => {
   await configAsync({ export: true });
   const application = new DanetApplication();
   await application.init(AppModule);
+  // const options = new SpecBuilder().addBearerAuth();
   const spec = new SpecBuilder()
     .setTitle('Todo')
     .setDescription('The todo API')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = await SwaggerModule.createDocument(application, spec);
   await SwaggerModule.setup('docs', application, document);

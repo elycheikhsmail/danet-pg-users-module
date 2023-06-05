@@ -2,8 +2,10 @@ import { Controller, Get, Req, UseGuard } from 'danet/mod.ts';
 import { MyService } from './my.service.ts';
 import { ReadAuthGuard } from './my.read.guard.ts';
 import { Request } from 'oak/mod.ts';
-import { Tag } from 'danet_swagger/decorators.ts';
+import { ApiBearerAuth, Tag } from 'danet_swagger/decorators.ts';
+ 
 
+@ApiBearerAuth() 
 @Tag('my')
 @Controller('my')
 export class MyController {
