@@ -7,6 +7,8 @@ import { PostgresService } from '../database/postgres.service.ts';
 export class UserRepository implements RepositoryUserModel<User> {
   constructor(@Inject(DATABASE) private dbService: PostgresService) {
   }
+  //constructor(@Inject(DATABASE) private dbService: PostgresService) {
+  //}
   async create(user: Omit<User, '_id'>) {
     const { rows } = await this.dbService.client.queryObject<User>(
       `INSERT INTO users (email, password) VALUES ('${user.email}', '${user.password}') RETURNING _id, email, password;`,

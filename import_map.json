@@ -1,11 +1,10 @@
 {
   "imports": {
-    "danet/": "https://deno.land/x/danet@1.7.1/",
+    "danet/": "https://deno.land/x/danet@1.7.4/",
     "dotenv/": "https://deno.land/x/dotenv/",
     "postgres/": "https://deno.land/x/postgres@v0.17.0/",
     "danet_swagger/": "https://deno.land/x/danet_swagger@1.6.1/",
     "oak/": "https://deno.land/x/oak@v11.1.0/",
-    "jsonwebtoken":"npm:jsonwebtoken",
-    "jsonwebtoken/":"npm:jsonwebtoken"
+    "jsonwebtoken": "npm:jsonwebtoken"
   }
 }
